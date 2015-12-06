@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="hello">Hello World, JuegoShotActivity!</string>
+	<string name="app_name">Shot Game</string>
+    
+    <string name="anadirNombre">ADD NAME</string>
+    <string name="publicarTweet">PUBLISH TWEET</string>
+    <string name="tituloAlertDialog">Quit game</string>
+    <string name="mensajeAlertDialog">Do you want to exit the game?</string>
+    <string name="afirmacionAlertDialog">Yes</string>
+    <string name="negacionAlertDialog">No</string>
+    <string name="mensajeJuegoShot">The score of Shot Game is</string>
+    <string name="publicarMensaje">PUBLISH MESSAGE</string>
+    <string name="nombreAnadido">Name added</string>
+    
+    <string name="mensajeCookies">We use device identifiers to personalize content and ads, to provide social media features and to analyze our traffic. We also share such identifiers and other information from your device with our social media, advertising and analytics partners.</string>
+    <string name="botonCookies">Close message</string>
+    
+    <string name="mensajeNivelFacil"> in EASY level</string>
+    <string name="mensajeNivelNormal"> in NORMAL level</string>
+    <string name="mensajeNivelDificil"> in HARD level</string>
+    
+</resources>

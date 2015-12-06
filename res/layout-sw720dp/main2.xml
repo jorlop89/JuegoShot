@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    		android:id="@+id/mainLayout"
+ 			android:orientation="vertical"
+ 			android:layout_width="fill_parent"
+ 			android:background="#7092be"
+ 			android:layout_height="fill_parent">
+	   
+	    <Button android:id="@+id/botonEnviarTweet"
+	        android:layout_gravity="center" 
+	       	android:layout_width="300dp"
+       		android:layout_height="120dp"
+	       	android:layout_centerInParent="true"
+	        android:background="@drawable/button"
+	        android:text="@string/publicarTweet"
+	        android:textSize="36sp"
+	        android:textColor="#000000">
+	    </Button>
+</RelativeLayout>

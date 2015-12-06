@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="hello">Hello World, JuegoShotActivity!</string>
+	<string name="app_name">Shot Game</string>
+    
+    <string name="anadirNombre">AJOUTER NOM</string>
+    <string name="publicarMensaje">PUBLIER UN MESSAGE</string>
+    <string name="tituloAlertDialog">Sortir du jeu</string>
+    <string name="mensajeAlertDialog">Est-ce que vous voulez sortir du jeu?</string>
+    <string name="afirmacionAlertDialog">Oui</string>
+    <string name="negacionAlertDialog">Non</string>
+    <string name="publicarTweet">PUBLIER UN TWEET</string>
+    <string name="nombreAnadido">Nom Ajouté</string>
+    <string name="mensajeJuegoShot">Le score du Shot Game est</string>
+    <string name="mensajeNivelFacil"> au niveau FACILE</string>
+    <string name="mensajeNivelNormal"> au niveau NORMAL</string>
+    <string name="mensajeNivelDificil"> au niveau DIFICIL</string>
+    
+    <string name="mensajeCookies">Nous utilisons des identificateurs de dispositif pour personnaliser le contenu et les annonces, pour fournir des fonctionnalites de medias sociaux et d\'analyser notre trafic. Nous partageons egalement ces identificants et autres informations depuis votre appareil avec nos partenaires medias sociaux, la publicite et d\'analyse. </string>
+    <string name="botonCookies">Fermez le message</string>
+    
+</resources>
