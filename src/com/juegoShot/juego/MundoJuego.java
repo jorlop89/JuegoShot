@@ -38,6 +38,7 @@ public class MundoJuego {
 	public static int dificultad;
 	//public int numeroBolas;
 	public static int numeroBolas;
+	public static int tamano;
 	public ArrayList <Bola> bolasInside = new ArrayList<Bola>(numeroBolas);
 	public ArrayList <Bola> bolasOutside= new ArrayList<Bola>(numeroBolas);
 	ArrayList<Bola> arrayBolasSigCandidatas;
@@ -50,12 +51,26 @@ public class MundoJuego {
     static float tick = TICK_INICIAL;
     RelojJuego timer ;
     
+	
+    
     public MundoJuego(int dificultad){
     	
     	MundoJuego.dificultad = dificultad;
     	if(dificultad == DIFFICULTY_EASY){
-    		WORLD_WIDTH=4;
-    		WORLD_HEIGHT= 4;
+    		tamano = (int) Math.floor(Math.random() * 2 + 4);
+    		
+    		WORLD_HEIGHT = tamano;
+    		WORLD_WIDTH = tamano;
+    		
+    		if(PantallaJuegoFacil.repetirPantalla){
+    		
+    			tamano = PantallaJuegoFacil.tamano;
+    			WORLD_HEIGHT = tamano;
+    			WORLD_WIDTH = tamano;
+    			
+    			
+    		}
+    		
     		//numeroBolas= 4;
     		//numeroBolas = 4;
     		numeroBolas = (int) Math.floor(Math.random() * 2 + 4);
@@ -66,8 +81,21 @@ public class MundoJuego {
     	}
     	
     	else if(dificultad == DIFFICULTY_MEDIUM){
-    		WORLD_WIDTH=6;
-    		WORLD_HEIGHT=6;
+    		
+    		tamano = (int) Math.floor(Math.random() * 2 + 6);
+    		
+    		WORLD_HEIGHT = tamano;
+    		WORLD_WIDTH = tamano;
+    		
+    		if(PantallaJuegoNormal.repetirPantalla){
+    		
+    			tamano = PantallaJuegoNormal.tamano;
+    			WORLD_HEIGHT = tamano;
+    			WORLD_WIDTH = tamano;
+    			
+    			
+    		}
+    		
     		//numeroBolas= 6; /* Este metodo nextInt(int) lo que hace es coger un rango de numeros entre 0 y int añadido*/
     		numeroBolas = (int) Math.floor(Math.random() * 3 + 6);
     		segundos = 45;

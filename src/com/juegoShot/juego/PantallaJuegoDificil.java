@@ -31,10 +31,10 @@ public class PantallaJuegoDificil extends Pantalla {
 	    
 	    
 	    /*Nuevo*/
-	    //public static int numeroBolas = MundoJuego.numeroBolas;
+	    public static int numeroBolas = MundoJuego.numeroBolas;
 	    public static boolean repetirPantalla = false;
 	    //public static ArrayList<Bola> bolasInsideR = new ArrayList<Bola>(numeroBolas);
-	    public static ArrayList<Bola> bolasInsideR = new ArrayList<Bola>();
+	    public static ArrayList<Bola> bolasInsideR = new ArrayList<Bola>(numeroBolas);
 	    /*Nuevo*/
 	    
 	
@@ -358,13 +358,16 @@ public class PantallaJuegoDificil extends Pantalla {
 			
 			Pixmap tableroPixmap= Assets.tablero;
 			Pixmap bolaPixmap = Assets.bola;
-			int sizeX = tablero.getTableroWidth()* 32;
-			int sizeY = tablero.getTableroHeight()* 32;
+			//int sizeX = tablero.getTableroWidth()* 32;
+			//int sizeY = tablero.getTableroHeight()* 32;
+			int sizeX = mundo.WORLD_WIDTH * 32;
+			int sizeY = mundo.WORLD_HEIGHT * 32;
 			g.drawPixmap(tableroPixmap, g.getWidth()/2 - sizeX /2 , 20 , 0, 0, sizeX+2, sizeY+2);
 			
 			int x = 0;
 			int y = 0;
 			for(int i = 0 ; i < numBolas ; i++){
+				
 				bola = mundo.bolasInside.get(i);
 				x= bola.columna * 32;
 				y= bola.fila * 32;

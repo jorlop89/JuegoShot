@@ -31,10 +31,11 @@ public class PantallaJuegoNormal extends Pantalla {
 	
 	
 	/*Nuevo*/
-    //public static int numeroBolas = MundoJuego.numeroBolas;
+    public static int numeroBolas = MundoJuego.numeroBolas;
+    public static int tamano = 0;
     public static boolean repetirPantalla = false;
     //public static ArrayList<Bola> bolasInsideR = new ArrayList<Bola>(numeroBolas);
-    public static ArrayList<Bola> bolasInsideR = new ArrayList<Bola>();
+    public static ArrayList<Bola> bolasInsideR = new ArrayList<Bola>(numeroBolas);
     /*Nuevo*/
 	
 	
@@ -114,32 +115,38 @@ public class PantallaJuegoNormal extends Pantalla {
 					if(inBounds(event, 250,  330,  37,  37)){
 						mundo.moveRight(mundo.bola);
 					}
-
-					if(mundo.tablero.getTableroHeight() == 6 && mundo.tablero.getTableroHeight() == 6){
-						if(inBounds(event,64,53,193,193)){
-							if(ConfiguracionesFacil.soundEnabled || ConfiguracionesNormal.soundEnabled || ConfiguracionesDificil.soundEnabled)
-								Assets.pulsar.play(1);
-								if(isCollition(event, 64, 53, 193, 193)){
+					
+					
+					if(inBounds(event,64,53,193,193)){
+						if(ConfiguracionesFacil.soundEnabled || ConfiguracionesNormal.soundEnabled || ConfiguracionesDificil.soundEnabled)
+							Assets.pulsar.play(1);
+							// Hay que usar el event para marcar la bola, para ello hay que utilizar las coordenadas.
+							
+							if(mundo.WORLD_HEIGHT == 6 || mundo.WORLD_WIDTH == 6){
+								if(isCollition(event,64,53,193,193)){
 									int columna = ((event.x - 64) / 33);
 									int fila = ((event.y - 53) / 33);
 									mundo.eleccionBola(columna, fila);
 								}
-						}
+							}
 					}
 					
-					if(mundo.tablero.getTableroHeight() == 7 && mundo.tablero.getTableroHeight() == 7){
-						if(inBounds(event,48,36,229,229)){
-							if(ConfiguracionesFacil.soundEnabled || ConfiguracionesNormal.soundEnabled || ConfiguracionesDificil.soundEnabled)
-								Assets.pulsar.play(1);
-								if(isCollition(event, 48, 36, 229, 229)){
+					if(inBounds(event,48,36,224,224)){
+						if(ConfiguracionesFacil.soundEnabled || ConfiguracionesNormal.soundEnabled || ConfiguracionesDificil.soundEnabled)
+							Assets.pulsar.play(1);
+						
+							if(mundo.WORLD_HEIGHT == 7 || mundo.WORLD_WIDTH == 7){
+								if(isCollition(event,48,36,224,224)){
 									int columna = ((event.x - 48) / 33);
 									int fila = ((event.y - 36) / 33);
 									mundo.eleccionBola(columna, fila);
 								}
-						}
+							}
 					}
+		
 				}
 			}
+			
 				
 
 					
@@ -175,7 +182,7 @@ public class PantallaJuegoNormal extends Pantalla {
 					ConfiguracionesNormal.save(juego.getFileIO());
 					
 				}
-				
+					
 			
 			
 		}
@@ -260,6 +267,7 @@ public class PantallaJuegoNormal extends Pantalla {
 	            				bolasInsideR.add(b);
 	            			}
 
+	            			tamano = MundoJuego.tamano;
 	            			juego.setScreen(new PantallaJuegoNormal(juego));
 	            			/*Nuevo*/
 	            			return;
@@ -373,7 +381,15 @@ public class PantallaJuegoNormal extends Pantalla {
 			Pixmap bolaPixmap = Assets.bola;
 			int sizeX = tablero.getTableroWidth()* 32;
 			int sizeY = tablero.getTableroHeight()* 32;
-			g.drawPixmap(tableroPixmap, g.getWidth()/2 - sizeX /2 , 52 , 0, 0, sizeX+2, sizeY+2);
+			//int sizeX = mundo.WORLD_WIDTH * 32;
+			//int sizeY = mundo.WORLD_HEIGHT * 32;
+			if(mundo.WORLD_HEIGHT == 6 && mundo.WORLD_WIDTH == 6){
+				g.drawPixmap(tableroPixmap, g.getWidth()/2 - sizeX /2 , 52 , 0, 0, sizeX+2, sizeY+2);
+			}
+			
+			else{
+				g.drawPixmap(tableroPixmap, g.getWidth()/2 - sizeX/2, 36, 0, 0, sizeX+2, sizeY+2);
+			}
 
 			int x = 0;
 			int y = 0;
@@ -382,15 +398,38 @@ public class PantallaJuegoNormal extends Pantalla {
 				bola = mundo.bolasInside.get(i);
 				x= bola.columna * 32;
 				y= bola.fila * 32;
-				g.drawPixmap(bolaPixmap, x +64, y+52, 0, 0, 33, 33);
+				
+				if(mundo.WORLD_HEIGHT == 6 && mundo.WORLD_WIDTH == 6){
+					g.drawPixmap(bolaPixmap, x +64, y+52, 0, 0, 33, 33);
+				}
+				
+				else{
+					g.drawPixmap(bolaPixmap, x +48, y+36, 0, 0, 33, 33);
+				}
+				
+				//g.drawPixmap(bolaPixmap, x +64, y+52, 0, 0, 33, 33);
 				
 				if(bola.estadoB == Bola.BOLA_ELEGIDA){
-					g.drawPixmap(bolaPixmap, x+64, y+52, 33, 0, 33, 33);
+					//g.drawPixmap(bolaPixmap, x+64, y+52, 33, 0, 33, 33);
+					if(mundo.WORLD_HEIGHT == 6 && mundo.WORLD_WIDTH == 6){
+						g.drawPixmap(bolaPixmap, x +64, y+52, 33, 0, 33, 33);
+					}
+					
+					else{
+						g.drawPixmap(bolaPixmap, x +48, y+36, 33, 0, 33, 33);
+					}
 					
 				}
 				
 				else if(bola.estadoB == Bola.BOLA_NO_ELEGIDA){
-					g.drawPixmap(bolaPixmap, x+64, y+52, 0, 0, 33, 33);
+					//g.drawPixmap(bolaPixmap, x+64, y+52, 0, 0, 33, 33);
+					if(mundo.WORLD_HEIGHT == 6 && mundo.WORLD_WIDTH == 6){
+						g.drawPixmap(bolaPixmap, x +64, y+52, 0, 0, 33, 33);
+					}
+					
+					else{
+						g.drawPixmap(bolaPixmap, x +48, y+36, 0, 0, 33, 33);
+					}
 					
 				}
 				/*else if(bola.estadoB == Bola.BOLA_OBJETIVO){
@@ -398,17 +437,39 @@ public class PantallaJuegoNormal extends Pantalla {
 				}*/
 				
 				else if(bola.estadoB == Bola.BOLA_EN_MOVIMIENTO){
-					g.drawPixmap(bolaPixmap, x+64, y+52, 33, 0, 33, 33);
+					//g.drawPixmap(bolaPixmap, x+64, y+52, 33, 0, 33, 33);
+					if(mundo.WORLD_HEIGHT == 6 && mundo.WORLD_WIDTH == 6){
+						g.drawPixmap(bolaPixmap, x +64, y+52, 33, 0, 33, 33);
+					}
+					
+					else{
+						g.drawPixmap(bolaPixmap, x +48, y+36, 33, 0, 33, 33);
+					}
 				}
 					
 				//else if (mundo.eliminaBola(bola)){
 				else if(bola.estadoB == Bola.BOLA_ELIMINADA){
-					g.drawPixmap(bolaPixmap, x+64, y+52, 33, 0, 33, 33);
+					//g.drawPixmap(bolaPixmap, x+64, y+52, 33, 0, 33, 33);
+					if(mundo.WORLD_HEIGHT == 6 && mundo.WORLD_WIDTH == 6){
+						g.drawPixmap(bolaPixmap, x +64, y+52, 33, 0, 33, 33);
+					}
+					
+					else{
+						g.drawPixmap(bolaPixmap, x +48, y+36, 33, 0, 33, 33);
+					}
+					
 					bolaPixmap.dispose();
 				}
 				
 				else if(mundo.bolasInside.size() == 1){
-					g.drawPixmap(bolaPixmap, x+64, y+52, 0, 0, 33, 33);
+					//g.drawPixmap(bolaPixmap, x+64, y+52, 0, 0, 33, 33);
+					if(mundo.WORLD_HEIGHT == 6 && mundo.WORLD_WIDTH == 6){
+						g.drawPixmap(bolaPixmap, x +64, y+52, 0, 0, 33, 33);
+					}
+					
+					else{
+						g.drawPixmap(bolaPixmap, x +48, y+36, 0, 0, 33, 33);
+					}
 					estadoJuego = JUEGO_FIN_DE_NIVEL;
 				}
 			}
